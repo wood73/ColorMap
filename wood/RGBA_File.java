@@ -9,7 +9,10 @@ import java.nio.ByteBuffer;
 import java.nio.channels.AsynchronousFileChannel;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 import java.util.concurrent.Future;
+
+import javax.swing.JOptionPane;
 
 
 public class RGBA_File {
@@ -43,10 +46,13 @@ public class RGBA_File {
 	//file that takes every inserted rgba value, and densely writes it to an additional file
 	File rgbaFileDense;
 	
-	public RGBA_File(String filePath, long initialHashTableIndexSize, String rgbaFilePath) {
+	public ArrayList<String> asciiFormatBuffer = null;
+	
+	public RGBA_File(String filePath, long initialHashTableIndexSize, String rgbaFilePath, ArrayList<String> asciiFormatBuffer) {
 		this.hashTableSize = initialHashTableIndexSize * 11;
 		this.f = new File(filePath);
 		this.rgbaFileDense = new File(rgbaFilePath);
+		this.asciiFormatBuffer = asciiFormatBuffer; //shallow copy
 		
 		fileSize = metadataSize + rgbaComponentSize * 4 + hashTableSize;
 		
@@ -181,12 +187,20 @@ public class RGBA_File {
 		
 		write("1" + asciiFormat, byteIndexAtHash);
 		if(rgbaFileDense != null) {
-			RGBA_File_Util.appendToFile(asciiFormat, rgbaFileDense);
+			asciiFormatBuffer.add(asciiFormat);
+			if(asciiFormatBuffer.size() > 200000) {
+				emptyBuffer();
+			}
 		}
 		
 		hashTableEntries++;
 		
 		return true;
+	}
+	
+	public void emptyBuffer() {
+		RGBA_File_Util.appendToFile(asciiFormatBuffer, rgbaFileDense);
+		asciiFormatBuffer = new ArrayList<String>();
 	}
 	
 }
