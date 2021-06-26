@@ -9,11 +9,10 @@ class RGBA_File_Parser:
         self.rgba_rgba_hashTableIndexSize = self.rgba_rgba_hashTableSize / 15
         self.rgba_rgba_hashTableByteLocation = 11
 
-    def get_3_overlapping_colors(self, red, green, blue, alpha):
+    def get_3_overlapping_colors(self, red, green, blue):
         closest_red = -1
         closest_green = -1
         closest_blue = -1
-        closest_alpha = -1
 
         color_increments = 255 / (self.possible_colors - 1)
         red_remainder = red % color_increments
@@ -49,19 +48,8 @@ class RGBA_File_Parser:
             else:
                 closest_blue = round(blue + (color_increments - blue_remainder))
 
-        alpha_remainder = alpha % color_increments
-        if alpha >= 255 - color_increments / 2:
-            closest_alpha = 255
-        else:
-            if alpha_remainder == 0:
-                closest_alpha = alpha
-            elif alpha_remainder <= color_increments / 2:
-                closest_alpha = round(alpha - alpha_remainder)
-            else:
-                closest_alpha = round(alpha + (color_increments - alpha_remainder))
-
         #  convert to base 256
-        b256 = closest_red * 16777216 + closest_green * 65536 + closest_blue * 256 + closest_alpha
+        b256 = closest_red * 16777216 + closest_green * 65536 + closest_blue * 256 + 255
         hashValue = self.rgba_rgba_hash(b256)
         byteLocationOfHash = int(self.rgba_rgba_hashTableByteLocation + hashValue * 15)
 
