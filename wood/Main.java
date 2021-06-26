@@ -15,19 +15,16 @@ public class Main {
 		boolean useAlpha = false;
 		
 		//file of hash table output, linking possibleColors to nearest 
-		String hashTablePath = "E:\\seam\\hash_table_output\\2\\w\\caramel.txt";
+		String hashTablePath = "caramel.txt";
 		
 		//file linking combinations of ra,ga,ba colors to the resulting RGBA color
-		String ra_ga_ba_rgba_FilePath = "E:\\seam\\hash_table_output\\2\\w\\crispy_bacon.txt";
+		String ra_ga_ba_rgba_FilePath = "crispy_bacon.txt";
 		
 		//creates the file linking combinations of ra,ga,ba colors to the resulting RGBA color
 		new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath);
 		
 		//creates the file linking possibleColors to the nearest RGBA color, along with ra,ga,ba colors
-		try {
-			new ColorMap(ra_ga_ba_rgba_FilePath, hashTablePath, possibleValues, useAlpha);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		new ColorMap(ra_ga_ba_rgba_FilePath, hashTablePath, possibleValues, useAlpha);
+		
 	}
 }
