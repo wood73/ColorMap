@@ -68,7 +68,7 @@ public class ColorMap {
 		long outputFileByteSize = outputFileIndexSize * outputBytesPerIndex + outputHashMetadataBytes;
 		long outputHashTableByteSize = outputFileIndexSize * outputBytesPerIndex;
 		
-		long totalNumberIterations = entryIndexSize * outputHashTableFilledIndexSize;
+		long totalNumberIterations = entryIndexSize * (long)Math.pow(possibleValues, (useAlpha ? 4 : 3));;
 		
 		Util.zeroPadFile(newHashTable, outputFileByteSize);
 		
