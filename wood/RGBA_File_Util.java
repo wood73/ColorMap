@@ -265,6 +265,25 @@ public class RGBA_File_Util {
 		}
 	}
 	
+	public static void appendToFile(ArrayList<String> data, File writeTo) {
+		//syntax for resource try block - automatically closed resources
+		try(FileWriter writer = new FileWriter(new File(writeTo.getAbsolutePath()), true)) {
+			
+			int chunkSize = 100000;
+			String toWrite = "";
+			for(int i = 0; i < data.size(); i++) {
+				toWrite += data.get(i);
+				if(toWrite.length() > chunkSize || i == data.size() - 1) {
+					writer.append(toWrite);
+					toWrite = "";
+				}
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void write(File f, String data, long byteIndex) {
 		//syntax for resource try block - automatically closed resources
 		try (AsynchronousFileChannel afc = AsynchronousFileChannel.open(Paths.get(f.getAbsolutePath()), StandardOpenOption.WRITE) ){
