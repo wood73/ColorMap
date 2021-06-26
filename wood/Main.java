@@ -15,10 +15,10 @@ public class Main {
 		boolean useAlpha = false;
 		
 		//file of hash table output, linking possibleColors to nearest 
-		String hashTablePath = "caramel.txt";
+		String hashTablePath = "hash_table.txt";
 		
 		//file linking combinations of ra,ga,ba colors to the resulting RGBA color
-		String ra_ga_ba_rgba_FilePath = "crispy_bacon.txt";
+		String ra_ga_ba_rgba_FilePath = "temp.txt";
 		
 		//creates the file linking combinations of ra,ga,ba colors to the resulting RGBA color
 		new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath);
