@@ -14,10 +14,11 @@ public class Main {
 		//whether alpha values should be iterated over possibleValues # of times | alpha distance calculation currently not supported
 		boolean useAlpha = false;
 		
-		//file of hash table output, linking possibleColors to nearest 
+		//file of hash table output, linking possibleColors to nearest  | overwrites file if it exists
 		String hashTablePath = "hash_table.txt";
 		
-		//file linking combinations of ra,ga,ba colors to the resulting RGBA color
+		//file linking combinations of ra,ga,ba colors to the resulting RGBA color | overwrites file if it exists
+		//can save file to later plug into the ColorMap class
 		String ra_ga_ba_rgba_FilePath = "temp.txt";
 		
 		//creates the file linking combinations of ra,ga,ba colors to the resulting RGBA color
