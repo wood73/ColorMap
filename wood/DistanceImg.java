@@ -1,14 +1,13 @@
 package wood;
 
 import java.awt.Color;
+import java.util.ArrayList;
 
-/**
- * Plugs into the RGBA_File class, and populates the file's hash table with values
- * 
- */
 public class DistanceImg {
 	
 	private long programStartTime = System.currentTimeMillis();
+	
+	public ArrayList<String> asciiFormatBuffer = new ArrayList<String>();
 	
 	public DistanceImg(int rgbSize, int opacitySize, String outputFilePath) {
 		
@@ -37,7 +36,7 @@ public class DistanceImg {
 		
 		long iterator = 0;
 		long num_RA_GA_BA_combinations = (long)(Math.pow(rgbSize, 3)*Math.pow(opacitySize, 3));
-		RGBA_File rgbaFile = new RGBA_File(tempFilePath, tempHashTableIndexSize, outputFilePath);
+		RGBA_File rgbaFile = new RGBA_File(tempFilePath, tempHashTableIndexSize, outputFilePath, asciiFormatBuffer);
 		
 		for(int r = 0; r < rgbSize; r++) {
 			for(int ra = 0; ra < opacitySize; ra++) {
@@ -64,6 +63,7 @@ public class DistanceImg {
 			}
 		}
 		
+		rgbaFile.emptyBuffer();
 		rgbaFile.f.delete();
 		
 		Util.write(rgbaFile.rgbaFileDense, String.format("%11s", rgbaFile.hashTableEntries * 10).replace(' ', '0'), 0);
