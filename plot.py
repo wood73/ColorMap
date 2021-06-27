@@ -13,7 +13,7 @@ ax.set_zlabel('blue', fontsize=20)
 #  ax.scatter(10, 100, 200)
 for i in data:
     point = i.split(",")
-    ax.scatter(int(point[0]), int(point[1]), int(point[2]))  # plot the point (2,3,4) on the figure
+    ax.scatter(int(point[0]), int(point[1]), int(point[2]))
 
 
 plt.show()
