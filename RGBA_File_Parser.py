@@ -82,8 +82,7 @@ class RGBA_File_Parser:
                                            round(g2_rgba / brightness_multiplier),
                                            round(b2_rgba / brightness_multiplier)]
 
-        print("Possible RGBA: " + str(r_rgba) + ", " + str(g_rgba) + ", " + str(b_rgba) + ", " + str(a_rgba) +
-              "  |  Closest Mapped RGBA: " + str(brightness_adjusted_rgba_output[0]) + ", " +
+        print("Closest Mapped RGBA: " + str(brightness_adjusted_rgba_output[0]) + ", " +
               str(brightness_adjusted_rgba_output[1]) + ", " + str(brightness_adjusted_rgba_output[2]) +
               ", " + str(a2_rgba))
 
