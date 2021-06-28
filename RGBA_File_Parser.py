@@ -9,10 +9,12 @@ class RGBA_File_Parser:
         self.rgba_rgba_hashTableIndexSize = self.rgba_rgba_hashTableSize / 15
         self.rgba_rgba_hashTableByteLocation = 11
 
-    def get_3_overlapping_colors(self, red, green, blue):
+    def get_3_overlapping_colors(self, red, green, blue, useScaling):
+
         closest_red = -1
         closest_green = -1
         closest_blue = -1
+        brightness_multiplier = -1
 
         color_increments = 255 / (self.possible_colors - 1)
         red_remainder = red % color_increments
@@ -48,6 +50,13 @@ class RGBA_File_Parser:
             else:
                 closest_blue = round(blue + (color_increments - blue_remainder))
 
+        if useScaling:
+            max_color = max(closest_red, max(closest_green, closest_blue))
+            brightness_multiplier = 255/max_color
+            closest_red = int(min(round(closest_red*brightness_multiplier), 255))
+            closest_green = int(min(round(closest_green*brightness_multiplier), 255))
+            closest_blue = int(min(round(closest_blue * brightness_multiplier), 255))
+
         #  convert to base 256
         b256 = closest_red * 16777216 + closest_green * 65536 + closest_blue * 256 + 255
         hashValue = self.rgba_rgba_hash(b256)
@@ -69,8 +78,13 @@ class RGBA_File_Parser:
         b = self.byteToInt(self.rgba_rgba_file.read(1))
         ba = self.byteToInt(self.rgba_rgba_file.read(1))
 
+        brightness_adjusted_rgba_output = [round(r2_rgba / brightness_multiplier),
+                                           round(g2_rgba / brightness_multiplier),
+                                           round(b2_rgba / brightness_multiplier)]
+
         print("Possible RGBA: " + str(r_rgba) + ", " + str(g_rgba) + ", " + str(b_rgba) + ", " + str(a_rgba) +
-              "  |  Closest Mapped RGBA: " + str(r2_rgba) + ", " + str(g2_rgba) + ", " + str(b2_rgba) +
+              "  |  Closest Mapped RGBA: " + str(brightness_adjusted_rgba_output[0]) + ", " +
+              str(brightness_adjusted_rgba_output[1]) + ", " + str(brightness_adjusted_rgba_output[2]) +
               ", " + str(a2_rgba))
 
         return [r, ra, g, ga, b, ba]
