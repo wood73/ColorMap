@@ -11,8 +11,7 @@ public class Main {
 		//setting rgbSize = 1 will result in all r,g,b values in the ra_ga_ba combinations equating 255
 		int rgbSize = 1, opacitySize = 55;
 		
-		//if true, then if any of the output color channels are greater than 85, then each color channel will be scaled so the max color channel is 255
-		//if true, and if all the output color channels are 85 or less, then each output color channel will be multiplied by 3
+		//if true, then brightness scaling will be applied
 		boolean multiply_ra_ga_ba_combo_outputs = true;
 		
 		//number of possible values between each r,g,b (a) that can be combined, which will each map to the closest RGBA_ra_ga_ba values
