@@ -106,7 +106,9 @@ class Huge_Hash_Parser:
         ba = []
         iterator = 0
         while iterator < self.rgba_rgba_hashTableIndexSize:
-            index_state = self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index)
+            self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index)
+            index_state = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+            print(str(index_state))
             if index_state == 1:
                 self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index + 8)
                 red = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
