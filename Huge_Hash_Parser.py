@@ -106,27 +106,29 @@ class Huge_Hash_Parser:
         ba = []
         iterator = 0
         while iterator < self.rgba_rgba_hashTableIndexSize:
-            self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index + 8)
-            red = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-            alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-            green = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-            alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-            blue = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-            alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-
-            ra_holder = [red, alpha]
-            ga_holder = [green, alpha]
-            ba_holder = [blue, alpha]
-            if ra_holder not in ra:
-                ra.append(ra_holder)
-
-            if ga_holder not in ga:
-                ga.append(ga_holder)
-
-            if ba_holder not in ba:
-                ba.append(ba_holder)
-
-            iterator += 1
+            index_state = self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index)
+            if index_state == 1:
+                self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index + 8)
+                red = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                green = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                blue = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+    
+                ra_holder = [red, alpha]
+                ga_holder = [green, alpha]
+                ba_holder = [blue, alpha]
+                if ra_holder not in ra:
+                    ra.append(ra_holder)
+    
+                if ga_holder not in ga:
+                    ga.append(ga_holder)
+    
+                if ba_holder not in ba:
+                    ba.append(ba_holder)
+    
+                iterator += 1
 
         for x in ra:
             f.write("[" + str(x[0]) + "," + str(x[1]) + "]")
