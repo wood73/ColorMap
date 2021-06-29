@@ -77,13 +77,18 @@ class RGBA_File_Parser:
         ga = self.byteToInt(self.rgba_rgba_file.read(1))
         b = self.byteToInt(self.rgba_rgba_file.read(1))
         ba = self.byteToInt(self.rgba_rgba_file.read(1))
-
+        
+        if useScaling:
+            r2_rgba = round(r2_rgba / brightness_multiplier);
+            g2_rgba = round(g2_rgba / brightness_multiplier);
+            b2_rgba = round(b2_rgba / brightness_multiplier);
+        
         brightness_adjusted_rgba_output = [round(r2_rgba / brightness_multiplier),
                                            round(g2_rgba / brightness_multiplier),
                                            round(b2_rgba / brightness_multiplier)]
 
-        print("Closest Mapped RGBA: " + str(brightness_adjusted_rgba_output[0]) + ", " +
-              str(brightness_adjusted_rgba_output[1]) + ", " + str(brightness_adjusted_rgba_output[2]) +
+        print("Closest Mapped RGBA: " + str(r2_rgba) + ", " +
+              str(g2_rgba) + ", " + str(b2_rgba) +
               ", " + str(a2_rgba))
 
         return [r, ra, g, ga, b, ba]
