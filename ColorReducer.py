@@ -52,11 +52,19 @@ def reduce(input_img_path, output_png_path, number_of_colors):
     width, height = input_image.size
     maxIterations = width * height
     iterator = 1
+    input_has_alpha = input_image.mode == 'RGBA'
     for i in range(width):
         for j in range(height):
 
             # getting the RGB pixel value.
-            r, g, b = input_image.getpixel((i, j))
+            r = -1
+            g = -1
+            b = -1
+            a = -1
+            if input_has_alpha:
+                r, g, b, a = input_image.getpixel((i, j))
+            else:
+                r, g, b = input_image.getpixel((i, j))
 
             closest_color = []
             closest_delta = 10000
@@ -89,3 +97,4 @@ def color_distance(color1, color2):
 
     return math.sqrt(np.right_shift(int((512 + rmean) * r * r), 8) + 4 * g * g +
                      np.right_shift(int((767 - rmean) * b * b), 8))
+
