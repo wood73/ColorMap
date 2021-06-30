@@ -56,7 +56,7 @@ def reduce(input_img_path, output_png_path, number_of_colors):
         for j in range(height):
 
             # getting the RGB pixel value.
-            r, g, b, p = input_image.getpixel((i, j))
+            r, g, b = input_image.getpixel((i, j))
 
             closest_color = []
             closest_delta = 10000
