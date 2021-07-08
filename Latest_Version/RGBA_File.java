@@ -140,9 +140,9 @@ public class RGBA_File {
 			for(char c : data.toCharArray())
 				bb.put((byte)c);
 			
-			//bb.limit(bb.position());
-			//bb.position(0);
-			Future<Integer> future = afc.write(bb.flip(), byteIndex);
+			bb.limit(bb.position());
+			bb.position(0);
+			Future<Integer> future = afc.write(bb, byteIndex);
 			
 			//get() makes sure the file write completes before moving on
 			//if not called (might be risky), on a small scale, tested to save time by 0.62124 %
