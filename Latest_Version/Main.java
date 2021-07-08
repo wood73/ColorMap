@@ -37,7 +37,7 @@ public class Main {
 		
 		//will create empty binary hash table for usage with GPU computation
 		String gpuHash = "gpuHash.bin";
-		Util.createGPUHash(gpuHash);
+		//Util.createGPUHash(gpuHash);
 		
 		//Util.mixColorsWithAlpha2(new Color(123, 42, 111, 122), new Color(223, 42, 111, 122));
 		//new GeneratePlotFile(rgbSize, opacitySize, "pythonFile.txt", "humanFile.txt");
