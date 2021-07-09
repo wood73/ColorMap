@@ -9,7 +9,7 @@ public class Main {
 		//rgbSize specifies how many possible values of r, g, and b there can be when the RA, GA, BA values are combined
 		//rgbSize & opacitySize values will be evenly distributed between 0-255 inclusive
 		//setting rgbSize = 1 will result in all r,g,b values in the ra_ga_ba combinations equating 255
-		int rgbSize = 6, opacitySize = 6;
+		int rgbSize = 1, opacitySize = 10;
 		
 		//if true, then there output RGBA as a result of mixing ra,ga,ba values will have it's brightness
 		//randomly scaled - a 70% chance for it to be randomly upscaled, 30% chance that brightness will be randomly downscaled
