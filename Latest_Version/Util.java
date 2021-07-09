@@ -220,19 +220,25 @@ public class Util {
 	    int blue = (int)Math.round((color2.getBlue() * normalizedC2Alpha / factor) + (color1.getBlue() * normalizedC1Alpha * (1 - normalizedC2Alpha) / factor));
 	    if(multiply_combo_outputs) {
 	    	
-	    	if(Math.random() > .3) {
-		    	int maxColor = Math.max(red, Math.max(green, blue));
+	    	int maxColor = Math.max(red, Math.max(green, blue));
+	    	int minColor = Math.min(red, Math.min(green, blue));
+	    	int maxColorDifference = 255 - maxColor;
+	    	int minColorDifference = minColor - 0;
+	    	
+	    	double oddsScalingUp = maxColorDifference / (double)(minColorDifference + maxColorDifference);
+	    	
+	    	
+	    	if(Math.random() < oddsScalingUp) {
 		    	double maxScaling = 255/(double)maxColor;
-		    	double scalingRange = maxScaling - 1;
-		    	double randScale = (Math.random()*scalingRange) + 1;
+		    	double maxScalingRange = maxScaling - 1;
+		    	double randScale = (Math.random()*maxScalingRange) + 1;
 	    		return new Color((int)Math.min(Math.round(red*randScale), 255), (int)Math.min(Math.round(green*randScale), 255), 
 	    				(int)Math.min(Math.round(blue*randScale), 255), (int)normalize(factor, 1, 255));
 	    	}
 	    	else {
-		    	int minColor = Math.min(red, Math.min(green, blue));
 		    	double minScaling = 1 / (double)minColor;
-		    	double scalingRange = 1 - minScaling;
-		    	double randScale = (Math.random()*scalingRange) + minScaling;
+		    	double minScalingRange = 1 - minScaling;
+		    	double randScale = (Math.random()*minScalingRange) + minScaling;
 		    	return new Color((int)Math.max(Math.round(red*randScale), 0), (int)Math.max(Math.round(green*randScale), 0), 
 	    				(int)Math.max(Math.round(blue*randScale), 0), (int)normalize(factor, 1, 255));
 	    	}
