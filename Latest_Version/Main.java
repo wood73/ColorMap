@@ -18,7 +18,7 @@ public class Main {
 		//number of possible values between each r,g,b (a) that can be combined, which will each map to the closest RGBA_ra_ga_ba values
 		int possibleValues = 10;
 		
-		//whether alpha values should be iterated over possibleValues # of times | alpha distance currently weighted to .75 inside ColorMap.java
+		//whether alpha values should be iterated over possibleValues # of times | alpha distance currently weighted to 1.3 inside ColorMap.java
 		boolean useAlpha = false;
 		
 		//file of hash table output, linking possibleColors to nearest value in rgba_ra,ga,ba file | overwrites file if it exists
