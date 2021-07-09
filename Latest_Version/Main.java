@@ -33,17 +33,17 @@ public class Main {
 		String cudaBinaryFilePath = "";
 		
 		//creates the file linking combinations of ra,ga,ba colors to the resulting RGBA color
-		//new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath, randomlyScale_ra_ga_ba_combo_outputs, cudaBinaryFilePath);
+		new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath, randomlyScale_ra_ga_ba_combo_outputs, cudaBinaryFilePath);
 		
 		//will create empty binary hash table for usage with GPU computation
 		String gpuHash = "gpuHash.bin";
 		//Util.createGPUHash(gpuHash);
 		
-		boolean useRandomBrightnessScalingInPlotFile = true;
-		new GeneratePlotFile(rgbSize, opacitySize, "pythonFile.txt", "humanFile.txt", useRandomBrightnessScalingInPlotFile);
+		//boolean useRandomBrightnessScalingInPlotFile = true;
+		//new GeneratePlotFile(rgbSize, opacitySize, "pythonFile.txt", "humanFile.txt", useRandomBrightnessScalingInPlotFile);
 		
 		//creates the file linking possibleColors to the nearest RGBA color, along with ra,ga,ba colors
-		//new ColorMap(ra_ga_ba_rgba_FilePath, hashTablePath, possibleValues, useAlpha);
+		new ColorMap(ra_ga_ba_rgba_FilePath, hashTablePath, possibleValues, useAlpha);
 		
 	}
 }
