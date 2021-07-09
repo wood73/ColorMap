@@ -12,7 +12,7 @@ public class GeneratePlotFile {
 	
 	public ArrayList<String> asciiFormatBuffer = new ArrayList<String>();
 	
-	public GeneratePlotFile(int rgbSize, int opacitySize, String pythonData, String humanData) {
+	public GeneratePlotFile(int rgbSize, int opacitySize, String pythonData, String humanData, boolean useBrightnessScaling) {
 		PrintWriter pw = null;
 		PrintWriter ragaba = null;
 		try {
@@ -62,15 +62,15 @@ public class GeneratePlotFile {
 							for(int ba = 0; ba < opacitySize; ba++, iterator++) {
 								
 								Color rgba = Util.mixColorsWithAlpha(new Color(evenlyDistributedRGBValues[r], 0, 0, opacity_values[ra]), 
-																new Color(0, evenlyDistributedRGBValues[g], 0, opacity_values[ga]), false);
+																new Color(0, evenlyDistributedRGBValues[g], 0, opacity_values[ga]), useBrightnessScaling);
 								
 								//Color rgba = Util.mixColorsWithAlpha2(new Color(0, 0, evenlyDistributedRGBValues[b], opacity_values[ba]), 
-										//new Color(0, evenlyDistributedRGBValues[g], 0, opacity_values[ga]));
+										//new Color(0, evenlyDistributedRGBValues[g], 0, opacity_values[ga]), useBrightnessScaling);
 								
 								//Color rgba = Util.mixColorsWithAlpha(new Color(0, 0, evenlyDistributedRGBValues[b], opacity_values[ra]), 
-										//new Color(0, evenlyDistributedRGBValues[g], 0, opacity_values[ga]));
+										//new Color(0, evenlyDistributedRGBValues[g], 0, opacity_values[ga]), useBrightnessScaling);
 								
-								rgba = Util.mixColorsWithAlpha(rgba, new Color(0, 0, evenlyDistributedRGBValues[b], opacity_values[ba]), false);
+								rgba = Util.mixColorsWithAlpha(rgba, new Color(0, 0, evenlyDistributedRGBValues[b], opacity_values[ba]), useBrightnessScaling);
 								
 								
 								//System.out.println(iterator + "/" + num_RA_GA_BA_combinations + " iterations complete");
@@ -100,4 +100,3 @@ public class GeneratePlotFile {
 	}
 	
 }
-
