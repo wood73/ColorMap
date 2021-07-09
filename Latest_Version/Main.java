@@ -39,7 +39,6 @@ public class Main {
 		String gpuHash = "gpuHash.bin";
 		//Util.createGPUHash(gpuHash);
 		
-		//Util.mixColorsWithAlpha2(new Color(123, 42, 111, 122), new Color(223, 42, 111, 122));
 		//boolean useRandomBrightnessScalingInPlotFile = true;
 		//new GeneratePlotFile(rgbSize, opacitySize, "pythonFile.txt", "humanFile.txt", useRandomBrightnessScalingInPlotFile);
 		
