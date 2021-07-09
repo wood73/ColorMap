@@ -22,29 +22,29 @@ public class Main {
 		boolean useAlpha = false;
 		
 		//file of hash table output, linking possibleColors to nearest value in rgba_ra,ga,ba file | overwrites file if it exists
-		String hashTablePath = "hash_table65.txt";
+		String hashTablePath = "hash_table.txt";
 		
 		//file linking combinations of ra,ga,ba colors to the resulting RGBA color | overwrites file if it exists
 		//can save file to later plug into the ColorMap class
-		String ra_ga_ba_rgba_FilePath = "temp65.txt";
+		String ra_ga_ba_rgba_FilePath = "temp.txt";
 		
 		//set this to an empty string "" to skip creating this file
 		//a .bin file path to the file used by CUDA
 		String cudaBinaryFilePath = "";
 		
 		//creates the file linking combinations of ra,ga,ba colors to the resulting RGBA color
-		//new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath, randomlyScale_ra_ga_ba_combo_outputs, cudaBinaryFilePath);
+		new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath, randomlyScale_ra_ga_ba_combo_outputs, cudaBinaryFilePath);
 		
 		//will create empty binary hash table for usage with GPU computation
 		String gpuHash = "gpuHash.bin";
 		//Util.createGPUHash(gpuHash);
 		
 		//Util.mixColorsWithAlpha2(new Color(123, 42, 111, 122), new Color(223, 42, 111, 122));
-		boolean useRandomBrightnessScalingInPlotFile = true;
-		new GeneratePlotFile(rgbSize, opacitySize, "pythonFile.txt", "humanFile.txt", useRandomBrightnessScalingInPlotFile);
+		//boolean useRandomBrightnessScalingInPlotFile = true;
+		//new GeneratePlotFile(rgbSize, opacitySize, "pythonFile.txt", "humanFile.txt", useRandomBrightnessScalingInPlotFile);
 		
 		//creates the file linking possibleColors to the nearest RGBA color, along with ra,ga,ba colors
-		//new ColorMap(ra_ga_ba_rgba_FilePath, hashTablePath, possibleValues, useAlpha);
+		new ColorMap(ra_ga_ba_rgba_FilePath, hashTablePath, possibleValues, useAlpha);
 		
 	}
 }
