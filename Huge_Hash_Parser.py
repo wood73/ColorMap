@@ -12,6 +12,9 @@ class Huge_Hash_Parser:
         self.rgba_rgba_hashTableByteLocation = 0
 
     def get_3_overlapping_colors(self, red, green, blue):
+        #  bug workaround - every other combination of r,g,b works in gpuHashOpacity128_random_scale.bin
+        if red == 1:
+            red = 0
 
         #  convert to base 256
         b256 = red * 65536 + green * 256 + blue
