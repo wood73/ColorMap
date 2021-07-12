@@ -6,8 +6,8 @@ class RGBA_File_Parser:
         self.rgba_rgba_file = io.open(path, 'rb')
         self.possible_colors = self.byteToInt(self.rgba_rgba_file.read(1))
         self.rgba_rgba_hashTableSize = int(self.bytesToString(self.rgba_rgba_file.read(10)))
-        self.bytesPerIndex = 15
-        self.rgba_rgba_hashTableIndexSize = self.rgba_rgba_hashTableSize / self.bytesPerIndex
+        self.bytes_per_index = 15
+        self.rgba_rgba_hashTableIndexSize = self.rgba_rgba_hashTableSize / self.bytes_per_index
         self.rgba_rgba_hashTableByteLocation = 11
 
     def get_3_overlapping_colors(self, red, green, blue, *args):
@@ -71,7 +71,7 @@ class RGBA_File_Parser:
         #  convert to base 256
         b256 = closest_red * 16777216 + closest_green * 65536 + closest_blue * 256 + closest_alpha
         hashValue = self.rgba_rgba_hash(b256)
-        byteLocationOfHash = int(self.rgba_rgba_hashTableByteLocation + hashValue * self.bytesPerIndex)
+        byteLocationOfHash = int(self.rgba_rgba_hashTableByteLocation + hashValue * self.bytes_per_index)
 
         self.rgba_rgba_file.seek(byteLocationOfHash + 1)
         r_rgba = self.byteToInt(self.rgba_rgba_file.read(1))
@@ -123,7 +123,7 @@ class RGBA_File_Parser:
                 hashed = ((initialHash ** maxExponent) + linearIncrement) % self.rgba_rgba_hashTableIndexSize
                 linearIncrement += 1
 
-            byteLocationOfHash = int(self.rgba_rgba_hashTableByteLocation + hashed * self.bytesPerIndex)
+            byteLocationOfHash = int(self.rgba_rgba_hashTableByteLocation + hashed * self.bytes_per_index)
             self.rgba_rgba_file.seek(byteLocationOfHash)
             firstByte = int(self.bytesToString(self.rgba_rgba_file.read(1)))
             isUnusedIndex = True if firstByte == 0 else False
