@@ -1,6 +1,7 @@
 import sys
 import io
 
+
 class RGBA_File_Parser:
     def __init__(self, path):
         self.rgba_rgba_file = io.open(path, 'rb')
@@ -163,7 +164,6 @@ class RGBA_File_Parser:
     def byteToInt(self, b):
         return int.from_bytes(b, byteorder="big", signed=False)
 
-
     def create_ragaba_file(self, path):
         #  file will separate each sub-value by a comma, set of 2 values by [], and ra,ga,ba separated by |
 
@@ -180,15 +180,15 @@ class RGBA_File_Parser:
                 self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index +
                                          (self.bytes_per_index - 6))
                 red = self.byteToInt(self.rgba_rgba_file.read(1))
-                alpha = self.byteToInt(self.rgba_rgba_file.read(1))
+                r_alpha = self.byteToInt(self.rgba_rgba_file.read(1))
                 green = self.byteToInt(self.rgba_rgba_file.read(1))
-                alpha = self.byteToInt(self.rgba_rgba_file.read(1))
+                g_alpha = self.byteToInt(self.rgba_rgba_file.read(1))
                 blue = self.byteToInt(self.rgba_rgba_file.read(1))
-                alpha = self.byteToInt(self.rgba_rgba_file.read(1))
+                b_alpha = self.byteToInt(self.rgba_rgba_file.read(1))
 
-                ra_holder = [red, alpha]
-                ga_holder = [green, alpha]
-                ba_holder = [blue, alpha]
+                ra_holder = [red, r_alpha]
+                ga_holder = [green, g_alpha]
+                ba_holder = [blue, b_alpha]
                 if ra_holder not in ra:
                     ra.append(ra_holder)
 
@@ -227,7 +227,6 @@ class RGBA_File_Parser:
         f.close()
         return ra
 
-
     def get_ga(self, path):
         f = open(path, 'r')
         data = f.readline().split(":")[1]
@@ -243,7 +242,6 @@ class RGBA_File_Parser:
         f.close()
         return ga
 
-
     def get_ba(self, path):
         f = open(path, 'r')
         data = f.readline().split(":")[2]
@@ -258,6 +256,7 @@ class RGBA_File_Parser:
 
         f.close()
         return ba
+
 
 '''
 ord('a') prints 97 | chr(97) prints a
