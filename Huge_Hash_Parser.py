@@ -114,15 +114,15 @@ class Huge_Hash_Parser:
             if index_state == 1:
                 self.rgba_rgba_file.seek(self.rgba_rgba_hashTableByteLocation + iterator * self.bytes_per_index + 8)
                 red = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-                alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                r_alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
                 green = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-                alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                g_alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
                 blue = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
-                alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
+                b_alpha = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
 
-                ra_holder = [red, alpha]
-                ga_holder = [green, alpha]
-                ba_holder = [blue, alpha]
+                ra_holder = [red, r_alpha]
+                ga_holder = [green, g_alpha]
+                ba_holder = [blue, b_alpha]
                 if ra_holder not in ra:
                     ra.append(ra_holder)
 
