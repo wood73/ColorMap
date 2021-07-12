@@ -150,6 +150,7 @@ class AlphaHashBrowns:
                 sys.exit()
             if isUnusedIndex:
                 print("unexpected unused index found in hash table")
+                sys.exit()
             else:
                 r_rgba = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
                 g_rgba = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
