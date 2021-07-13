@@ -7,8 +7,8 @@ class Huge_Hash_Parser:
         self.rgba_rgba_file = io.open(path, 'rb')
         self.possible_colors = 256
         self.bytes_per_index = 14;
-        self.rgba_rgba_hashTableSize = 21810380 * self.bytes_per_index
         self.rgba_rgba_hashTableIndexSize = 21810380
+        self.rgba_rgba_hashTableSize = self.rgba_rgba_hashTableIndexSize * self.bytes_per_index
         self.rgba_rgba_hashTableByteLocation = 0
 
     def get_3_overlapping_colors(self, red, green, blue):
@@ -83,6 +83,7 @@ class Huge_Hash_Parser:
                 sys.exit()
             if isUnusedIndex:
                 print("unexpected unused index found in hash table")
+                sys.exit()
             else:
                 r_rgba = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
                 g_rgba = int.from_bytes(self.rgba_rgba_file.read(1), byteorder="big", signed=False)
