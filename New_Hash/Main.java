@@ -7,11 +7,7 @@ public class Main {
 	
 	@SuppressWarnings("unused")
 	public static void main(String[] args) {
-		//File f = new File("E:\\seam\\TestColorMap3\\op32_backup\\gpuHash.bin");
-		//f.delete();
-		//long indexesInHash = (long)(52L * 52 * 52 * 52 * 1.3);
-		//long bytesInHash = 15 * indexesInHash;
-		//System.out.println(indexesInHash);System.exit(0);
+		
 		//rgbSize specifies how many possible values of r, g, and b there can be when the RA, GA, BA values are combined
 		//rgbSize & opacitySize values will be evenly distributed between 0-255 inclusive
 		//setting rgbSize = 1 will result in all r,g,b values in the ra_ga_ba combinations equating 255
