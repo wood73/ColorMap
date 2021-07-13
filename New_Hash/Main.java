@@ -25,7 +25,7 @@ public class Main {
 		int possibleValues = 12;
 		
 		//whether alpha values should be iterated over possibleValues # of times | alpha distance currently weighted to 1.3 inside ColorMap.java
-		boolean useAlpha = true;
+		boolean useAlpha = false;
 		
 		//file of hash table output, linking possibleColors to nearest value in rgba_ra,ga,ba file | overwrites file if it exists
 		String hashTablePath = "hash_table.txt";
@@ -36,7 +36,7 @@ public class Main {
 		
 		//set this to an empty string "" to skip creating this file
 		//a .bin file path to the file used by CUDA
-		String cudaBinaryFilePath = "binary128.bin";
+		String cudaBinaryFilePath = "";
 		
 		//creates the file linking combinations of ra,ga,ba colors to the resulting RGBA color
 		new DistanceImg(rgbSize, opacitySize, ra_ga_ba_rgba_FilePath, randomlyScale_ra_ga_ba_combo_outputs, cudaBinaryFilePath);
