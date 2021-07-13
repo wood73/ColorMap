@@ -17,8 +17,7 @@ public class Main {
 		//setting rgbSize = 1 will result in all r,g,b values in the ra_ga_ba combinations equating 255
 		int rgbSize = 1, opacitySize = 12;
 		
-		//if true, then there output RGBA as a result of mixing ra,ga,ba values will have it's brightness
-		//randomly scaled - a 70% chance for it to be randomly upscaled, 30% chance that brightness will be randomly downscaled
+		//if true, then there output RGBA as a result of mixing ra,ga,ba values will have it's brightness randomly scaled
 		boolean randomlyScale_ra_ga_ba_combo_outputs = true;
 		
 		//number of possible values between each r,g,b (a) that can be combined, which will each map to the closest RGBA_ra_ga_ba values
